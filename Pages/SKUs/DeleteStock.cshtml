@@ -1,0 +1,17 @@
+@page
+@model WIndowApp.Pages.SKUs.DeleteStock
+@{
+    ViewData["Title"] = "DeleteStock";
+}
+
+<div>
+    <H2>Delete Stock</H2>
+    <div>Are you sure you want to delete this stock?</div>
+    <div>Customer ID = @Request.Query["id"]</div>
+</div>
+<form method="post">
+    <div style="margin-top: 10px;">
+        <button class="btn btn-danger"> Delete</button>
+        <a class="btn btn-primary" href="/SKUs/Index">Cancel</a>
+    </div>
+</form>

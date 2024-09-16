@@ -1,0 +1,87 @@
+@page
+@model WIndowApp.Pages.OrderLists.EditOrder
+@{
+    ViewData["Title"] = "EditOrder";
+}
+
+<div class="row">
+    <div class="col-md-8 mx-auto rounded border p-4">
+        <h2 class="text-center mb-5">Edit Order</h2>
+        <div><span style="margin-top: 10px; color:red;">@Model.ErrorMessage</span></div>
+        <form method="post" asp-page-handler="Submit">
+            <div>
+                <label class="col-form-label">Purchase Order Id</label>
+                <div>
+                    <input class="form-control" asp-for="orderInfo.Id" readonly/>
+                </div>
+            </div>
+            <div>
+                <label class="col-form-label">Customer Name</label>
+                <div>
+                    <input class="form-control" asp-for="orderInfo.CustomerName" readonly />
+                    <span asp-validation-for="orderInfo.CustomerName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <label class="col-form-label">Delivery Date</label>
+                <div>
+                    <input class="form-control" type="datetime-local" asp-for="dateformat"/>
+                    <span asp-validation-for="dateformat" class="text-danger"></span>
+                </div>
+            </div>
+            <div>
+            <label class="col-form-label">Status</label>
+            <div>
+                <select class="form-control" asp-for="orderInfo.OrderStatus">
+                    <option value="">-- Select Status --</option>
+                    <option value="new">New</option>
+                    <option value="completed">Completed</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+            </div>
+            <div style="margin-top: 10px;">
+                <a class="btn btn-outline-primary" href="/OrderLists/PurchaseItemFolder/CreatePurchaseItem?purchaseOrderId=@Model.orderInfo.Id" role="button">Add item</a>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Items</th>
+                        <th>Quantity</th>
+                        <th>Price per unit</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model.purchaseItemsList){
+                        <tr>
+                            <td>@item?.ItemName</td>
+                            <td>@item?.Quantity</td>
+                            <td>Php @item?.Price</td>
+                            <td>
+                                <a class="btn btn-primary" href="/OrderLists/PurchaseItemFolder/EditPurchaseItem?id=@Model.Request.Query["id"]">Edit</a>
+                                <a class="btn btn-danger" href="/OrderLists/PurchaseItemFolder/DeletePurchaseItem?purchaseorderid=@Model.Request.Query["id"]&id=@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div>
+                <label class="col-form-label">Amount Due (Php)</label>
+                <div>
+                    <input class="form-control" asp-for="totalAmount" readonly/>
+                </div>
+            </div>
+
+            <div style="display: flex; margin-top: 10px; gap: 10px;">
+                <div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <div>
+                    <a class="btn btn-outline-primary" href="/OrderLists/Index" role="button">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

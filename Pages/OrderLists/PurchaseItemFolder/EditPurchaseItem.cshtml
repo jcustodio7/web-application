@@ -1,0 +1,69 @@
+@page
+@model WIndowApp.Pages.OrderLists.PurchaseItemFolder.EditPurchaseItem
+@{
+    ViewData["Title"] = "EditPurchaseItem";
+}
+
+<h1>Edit Item</h1>
+
+<form method="post" asp-page-handler="Submit">
+    <div>
+        <label class="col-form-label">Item ID</label>
+        <div>
+            <input class="form-control" asp-for="editPurchase.Id" readonly/>
+        </div>
+    </div>
+    <div>
+        <label class="col-form-label">Item Name</label>
+        <div>
+            <select class="form-control" asp-for="editPurchase.ItemName">
+                @foreach(var item in @Model.StockKeepingUnitLists){
+                    <option value="@item.Name">@item.Name</option>
+                }
+            </select>
+            <span asp-validation-for="editPurchase.ItemName" class="text-danger"></span>
+        </div>
+    </div>
+    <div>
+        <label class="col-form-label">Purchase Order ID</label>
+        <div>
+            <input class="form-control" asp-for="editPurchase.PurchaseOrderID" readonly/>
+        </div>
+    </div>
+    @* <div>
+        <label class="col-form-label">SkuID</label>
+        <div>
+            <input class="form-control" asp-for="editPurchase.SkuID" />
+            <span asp-validation-for="editPurchase.SkuID" class="text-danger"></span>
+        </div>
+    </div> *@
+    <div>
+        <label class="col-form-label">Quantity</label>
+        <div>
+            <input class="form-control" asp-for="editPurchase.Quantity" />
+            <span asp-validation-for="editPurchase.Quantity" class="text-danger"></span>
+        </div>
+    </div>
+    @* <div>
+        <label class="col-form-label">Price per unit (Php)</label>
+        <div>
+            <input class="form-control" asp-for="editPurchase.PricePerUnit"/>
+            <span asp-validation-for="editPurchase.PricePerUnit" class="text-danger"></span>
+        </div>
+    </div> *@
+    <div>
+        <label class="col-form-label">TimeStamp</label>
+        <div>
+            <input class="form-control" asp-for="editPurchase.Timestamp" readonly/>
+        </div>
+    </div>
+
+    <div style="display: flex; margin-top: 10px; gap: 10px;">
+        <div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div>
+            <a class="btn btn-outline-primary" href="/OrderLists/EditOrder?id=@Model.editPurchase.PurchaseOrderID" role="button">Cancel</a>
+        </div>
+    </div>
+</form>

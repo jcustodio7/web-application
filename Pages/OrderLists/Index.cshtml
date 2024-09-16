@@ -1,0 +1,37 @@
+@page
+@model WIndowApp.Pages.OrderLists.Index
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="text-center mb-3">List of Orders</h1>
+
+<div>
+    <a class="btn btn-primary" href="/OrderLists/CreateOrder">Create New</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Delivery Date</th>
+            <th>Status</th>
+            <th>Amount Due</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var order in Model.OrderLists){
+            <tr>
+                <td>@order?.CustomerName</td>
+                <td>@order?.DeliveryDate</td>
+                <td>@order?.OrderStatus</td>
+                <td>Php @order?.AmountDue</td>
+                <td>
+                    <a class="btn btn-primary" href="/OrderLists/EditOrder?id=@order.Id">Edit</a>
+                    <a class="btn btn-danger" href="/OrderLists/DeleteOrder?id=@order.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

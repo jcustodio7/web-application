@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\WIndowApp.props" />
+</Project>

@@ -1,0 +1,41 @@
+@page
+@model WIndowApp.Pages.Customers.Index
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="text-center mb-3">List of Customers</h1>
+
+<div>
+    <a class="btn btn-primary" href="/Customers/Create">New Customer</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Full Name</th>
+            <th>City</th>
+            <th>Mobile Number</th>
+            <th>Is Active</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var customer in Model.CustomerLists){
+            <tr>
+                <td>@customer?.FirstName</td>
+                <td>@customer?.LastName</td>
+                <td>@customer?.FullName</td>
+                <td>@customer?.City</td>
+                <td>@customer?.MobileNumber</td>
+                <td>@customer?.isActive</td>
+                <td>
+                    <a class="btn btn-primary" href="/Customers/EditProfile?id=@customer.Id">Edit</a>
+                    <a class="btn btn-danger" href="/Customers/DeleteProfile?id=@customer.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

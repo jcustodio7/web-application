@@ -1,0 +1,50 @@
+@page
+@model WIndowApp.Pages.OrderLists.CreateOrder
+@{
+    ViewData["Title"] = "CreateOrder";
+}
+
+<div class="row">
+    <div class="col-md-8 mx-auto rounded border p-4">
+        <h2 class="text-center mb-5">New Order</h2>
+        <div><span style="margin-top: 10px; color:red;">@Model.ErrorMessage</span></div>
+        <form method="post" asp-page-handler="Submit">
+            <div>
+                <label class="col-form-label">Customer Name</label>
+                <div>
+                    <select class="form-control" asp-for="orderInfo.CustomerName">
+                    @foreach(var item in @Model.CustomerLists){
+                        <option value="@item.FullName">@item.FullName</option>
+                    }
+                    </select>
+                    <span asp-validation-for="orderInfo.CustomerName" class="text-danger"></span>
+                </div>
+            </div>
+            <div>
+                <label class="col-form-label">Delivery Date</label>
+                <div>
+                    <input class="form-control" type="datetime-local" asp-for="orderInfo.DeliveryDate"/>
+                    <span asp-validation-for="orderInfo.DeliveryDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div>
+                <label class="col-form-label">Status</label>
+                <div>
+                    <select class="form-control" asp-for="orderInfo.OrderStatus">
+                        <option value="new">New</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+            </div>
+            <div style="display: flex; margin-top: 10px; gap: 10px;">
+                <div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <div>
+                    <a class="btn btn-outline-primary" href="/OrderLists/Index" role="button">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

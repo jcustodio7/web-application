@@ -1,0 +1,17 @@
+@page
+@model WIndowApp.Pages.Customers.DeleteProfile
+@{
+    ViewData["Title"] = "DeleteProfile";
+}
+
+<div>
+    <H2>Delete Customer</H2>
+    <div>Are you sure you want to delete this profile?</div>
+    <div>Customer ID = @Request.Query["id"]</div>
+</div>
+<form method="post">
+    <div style="margin-top: 10px;">
+        <button class="btn btn-danger"> Delete</button>
+        <a class="btn btn-primary" href="/Customers/Index">Cancel</a>
+    </div>
+</form>

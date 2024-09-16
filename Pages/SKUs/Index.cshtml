@@ -1,0 +1,39 @@
+@page
+@model WIndowApp.Pages.SKUs.Index
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="text-center mb-3">List of SKU</h1>
+
+<div>
+    <a class="btn btn-primary" href="/SKUs/CreateStockUnit">Create New</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Unit Price</th>
+            <th>Is Active</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var stock in Model.StockKeepingUnit){
+            <tr>
+                <td>@stock?.Id</td>
+                <td>@stock?.Name</td>
+                <td>@stock?.Code</td>
+                <td>Php @stock?.UnitPrice</td>
+                <td>@stock?.IsActive</td>
+                <td>
+                    <a class="btn btn-primary" href="/SKUs/EditStock?id=@stock.Id">Edit</a>
+                    <a class="btn btn-danger" href="/SKUs/DeleteStock?id=@stock.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

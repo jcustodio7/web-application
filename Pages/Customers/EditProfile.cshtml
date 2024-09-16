@@ -1,0 +1,85 @@
+@page
+@model WIndowApp.Pages.Customers.EditProfile
+@{
+    ViewData["Title"] = "EditProfile";
+}
+
+<div class="row">
+    <div class="col-md-8 mx-auto rounded border p-4">
+        <h2 class="text-center mb-5">Edit Customer</h2>
+        <div><span style="margin-top: 10px; color:red;">@Model.ErrorMessage</span></div>
+        <form method="post">
+            <div>
+                <label class="col-form-label">ID</label>
+                <div>
+                    <input class="form-control" readonly asp-for="Customer.Id"/>
+                </div>
+            </div>
+
+            <div>
+                <label class="col-form-label">First Name</label>
+                <div>
+                    <input class="form-control" asp-for="Customer.FirstName"/>
+                    <span asp-validation-for="Customer.FirstName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <label class="col-form-label">Last Name</label>
+                <div>
+                    <input class="form-control" asp-for="Customer.LastName"/>
+                    <span asp-validation-for="Customer.LastName" class="text-danger"></span>
+                </div>
+            </div>
+
+               <div>
+                <label class="col-form-label">Full Name</label>
+                <div>
+                    <input class="form-control" asp-for="Customer.FullName" readonly/>
+                </div>
+            </div>
+
+            <div>
+                <label class="col-form-label">Mobile Number</label>
+                <div>
+                    <input class="form-control" asp-for="Customer.MobileNumber"/>
+                    <span asp-validation-for="Customer.MobileNumber" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <label class="col-form-label">City</label>
+                <div>
+                    <input class="form-control" asp-for="Customer.City"/>
+                    <span asp-validation-for="Customer.City" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <label class="col-form-label">Created By</label>
+                <div>
+                    <input class="form-control" asp-for="Customer.CreatedBy"/>
+                    <span asp-validation-for="Customer.CreatedBy" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <label class="col-form-label">User Id</label>
+                <div>
+                    <input class="form-control" asp-for="Customer.UserId"/>
+                    <span asp-validation-for="Customer.UserId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div style="display: flex; margin-top: 10px; gap: 10px;">
+                <div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <div>
+                    <a class="btn btn-outline-primary" href="/Customers/Index" role="button">Cancel</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
